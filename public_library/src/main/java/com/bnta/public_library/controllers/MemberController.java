@@ -18,8 +18,11 @@ public class MemberController {
     MemberRepository memberRepository;
 
     // INDEX
-    @GetMapping
-    public ResponseEntity<List<Member>> getMembers() {
+    @GetMapping("/{prefix}")
+    public ResponseEntity<List<Member>> getMembersAndFilters(@RequestParam(required = false, name="prefix") String prefix) {
+        if (prefix != null) {
+            return new ResponseEntity(memberRepository.findByNameStartingWith(prefix), HttpStatus.OK);
+        }
         return new ResponseEntity(memberRepository.findAll(), HttpStatus.OK);
     }
 

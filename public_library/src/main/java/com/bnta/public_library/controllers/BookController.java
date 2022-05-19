@@ -18,7 +18,10 @@ public class BookController {
 
     // INDEX
     @GetMapping
-    public ResponseEntity<List<Book>> getBooks() {
+    public ResponseEntity<List<Book>> getBooksAndFilters(@RequestParam(required = false, name="copies") Integer copies) {
+        if (copies != null) {
+            return new ResponseEntity(bookRepository.findByCopiesGreaterThanEqual(copies), HttpStatus.OK);
+        }
         return new ResponseEntity(bookRepository.findAll(), HttpStatus.OK);
     }
 
