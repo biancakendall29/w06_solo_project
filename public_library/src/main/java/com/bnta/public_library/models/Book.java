@@ -19,12 +19,17 @@ public class Book {
     private String author;
     @ManyToOne
     @JoinColumn(name = "library_id")
-    private PublicLibrary library;
-    @ManyToMany(mappedBy = "books")
+    private Library library;
+    @ManyToMany
+    @JoinTable(
+        name = "books_members",
+        joinColumns = {@JoinColumn(name = "book_id", nullable = false)},
+        inverseJoinColumns = {@JoinColumn(name = "member_id", nullable = false)}
+    )
     @JsonIgnoreProperties({"books"})
     private List<Member> members;
 
-    public Book(String title, String author, PublicLibrary library, List<Member> members) {
+    public Book(String title, String author, Library library, List<Member> members) {
         this.title = title;
         this.author = author;
         this.library = library;
@@ -76,7 +81,6 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", members=" + members +
-                ", library=" + library +
                 '}';
     }
 }

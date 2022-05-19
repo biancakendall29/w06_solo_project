@@ -18,19 +18,21 @@ public class Member {
 //    @ManyToOne
 //    @JoinColumn(name = "library_id")
 //    private PublicLibrary library;
-    @ManyToMany
-    @JoinTable(
-            name = "checkout_cards",
-            joinColumns = {@JoinColumn(name = "member_id", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "book_id", nullable = false)}
-    )
+//    @ManyToMany
+//    @JoinTable(
+//            name = "member_book",
+//            joinColumns = {@JoinColumn(name = "member_id", nullable = false)},
+//            inverseJoinColumns = {@JoinColumn(name = "book_id", nullable = false)}
+//    )
+//    @JsonIgnoreProperties({"members"})
+    @ManyToMany(mappedBy = "members")
     @JsonIgnoreProperties({"members"})
     private List<Book> books;
 
     public Member(String name) {
         this.name = name;
         //this.library = library;
-        this.books = new ArrayList<Book>();
+        this.books = new ArrayList<>();
     }
 
     public Member() {}
