@@ -17,6 +17,8 @@ public class Book {
     private String title;
     @Column
     private String author;
+    @Column(name = "number_of_copies")
+    private int copies;
     @ManyToOne
     @JoinColumn(name = "library_id")
     private Library library;
@@ -29,9 +31,10 @@ public class Book {
     @JsonIgnoreProperties({"books"})
     private List<Member> members;
 
-    public Book(String title, String author, Library library, List<Member> members) {
+    public Book(String title, String author, int copies, Library library, List<Member> members) {
         this.title = title;
         this.author = author;
+        this.copies = copies;
         this.library = library;
         this.members = members;
     }
@@ -58,6 +61,22 @@ public class Book {
         this.author = author;
     }
 
+    public int getCopies() {
+        return copies;
+    }
+
+    public void setCopies(int copies) {
+        this.copies = copies;
+    }
+
+    public Library getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(Library library) {
+        this.library = library;
+    }
+
     public List<Member> getMembers() {
         return members;
     }
@@ -80,6 +99,7 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
+                ", copies='" + copies + '\'' +
                 ", members=" + members +
                 '}';
     }

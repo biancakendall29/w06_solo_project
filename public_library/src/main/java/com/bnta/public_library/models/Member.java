@@ -3,6 +3,7 @@ package com.bnta.public_library.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,23 +16,15 @@ public class Member {
     private Long id;
     @Column
     private String name;
-//    @ManyToOne
-//    @JoinColumn(name = "library_id")
-//    private PublicLibrary library;
-//    @ManyToMany
-//    @JoinTable(
-//            name = "member_book",
-//            joinColumns = {@JoinColumn(name = "member_id", nullable = false)},
-//            inverseJoinColumns = {@JoinColumn(name = "book_id", nullable = false)}
-//    )
-//    @JsonIgnoreProperties({"members"})
+    @Column
+    private LocalDate dob;
     @ManyToMany(mappedBy = "members")
     @JsonIgnoreProperties({"members"})
     private List<Book> books;
 
-    public Member(String name) {
+    public Member(String name, LocalDate dob) {
         this.name = name;
-        //this.library = library;
+        this.dob = dob;
         this.books = new ArrayList<>();
     }
 
@@ -65,11 +58,20 @@ public class Member {
         return this.books.remove(book);
     }
 
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
+
     @Override
     public String toString() {
         return "Member{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", dob=" + dob +
                 ", books=" + books +
                 '}';
     }
