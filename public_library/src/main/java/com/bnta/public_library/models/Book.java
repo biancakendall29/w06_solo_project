@@ -1,5 +1,7 @@
 package com.bnta.public_library.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +17,12 @@ public class Book {
     private String title;
     @Column
     private String author;
-
+    @ManyToMany(mappedBy = "books")
+    @JsonIgnoreProperties({"books"})
     private List<Member> members;
+    @ManyToOne
+    @JoinColumn(name = "library_id")
+    private Public_library library;
 
     public Book(String title, String author) {
         this.title = title;

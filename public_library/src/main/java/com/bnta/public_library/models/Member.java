@@ -23,6 +23,9 @@ public class Member {
     )
     @JsonIgnoreProperties({"members"})
     private List<Book> books;
+    @ManyToOne
+    @JoinColumn(name = "library_id")
+    private Public_library library;
 
     public Member(String name) {
         this.name = name;

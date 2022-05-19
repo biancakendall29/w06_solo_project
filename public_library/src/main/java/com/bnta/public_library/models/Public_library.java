@@ -13,8 +13,9 @@ public class Public_library {
     private Long id;
     @Column
     private String name;
-
+    @OneToMany(mappedBy = "library")
     private List<Member> members;
+    @OneToMany(mappedBy = "library")
     private List<Book> books;
 
     public Public_library(String name) {
