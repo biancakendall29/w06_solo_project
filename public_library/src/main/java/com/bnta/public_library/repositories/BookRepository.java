@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-    List<Book> findBookByCopies(int copies);
+    List<Book> findByCopiesGreaterThanEqual(int copies);
 
 }
