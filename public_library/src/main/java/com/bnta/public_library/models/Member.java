@@ -15,6 +15,9 @@ public class Member {
     private Long id;
     @Column
     private String name;
+//    @ManyToOne
+//    @JoinColumn(name = "library_id")
+//    private PublicLibrary library;
     @ManyToMany
     @JoinTable(
             name = "checkout_cards",
@@ -23,12 +26,10 @@ public class Member {
     )
     @JsonIgnoreProperties({"members"})
     private List<Book> books;
-    @ManyToOne
-    @JoinColumn(name = "library_id")
-    private Public_library library;
 
     public Member(String name) {
         this.name = name;
+        //this.library = library;
         this.books = new ArrayList<Book>();
     }
 
@@ -68,7 +69,6 @@ public class Member {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", books=" + books +
-                ", library=" + library +
                 '}';
     }
 }

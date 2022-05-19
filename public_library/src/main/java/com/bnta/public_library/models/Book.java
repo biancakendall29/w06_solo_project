@@ -17,17 +17,18 @@ public class Book {
     private String title;
     @Column
     private String author;
+    @ManyToOne
+    @JoinColumn(name = "library_id")
+    private PublicLibrary library;
     @ManyToMany(mappedBy = "books")
     @JsonIgnoreProperties({"books"})
     private List<Member> members;
-    @ManyToOne
-    @JoinColumn(name = "library_id")
-    private Public_library library;
 
-    public Book(String title, String author) {
+    public Book(String title, String author, PublicLibrary library, List<Member> members) {
         this.title = title;
         this.author = author;
-        this.members = new ArrayList<Member>();
+        this.library = library;
+        this.members = members;
     }
 
     public Book() {}

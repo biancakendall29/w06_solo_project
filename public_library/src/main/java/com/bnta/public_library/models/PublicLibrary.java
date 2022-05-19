@@ -6,25 +6,25 @@ import java.util.List;
 
 @Entity
 @Table(name = "public_library")
-public class Public_library {
+public class PublicLibrary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     private String name;
-    @OneToMany(mappedBy = "library")
-    private List<Member> members;
+//    @OneToMany(mappedBy = "library")
+//    private List<Member> members;
     @OneToMany(mappedBy = "library")
     private List<Book> books;
 
-    public Public_library(String name) {
+    public PublicLibrary(String name) {
         this.name = name;
-        this.members = new ArrayList<Member>();
+        //this.members = new ArrayList<Member>();
         this.books = new ArrayList<Book>();
     }
 
-    public Public_library() {}
+    public PublicLibrary() {}
 
     public Long getId() {
         return id;
@@ -38,13 +38,13 @@ public class Public_library {
         this.name = name;
     }
 
-    public List<Member> getMembers() {
-        return members;
-    }
-
-    public void setMembers(List<Member> members) {
-        this.members = members;
-    }
+//    public List<Member> getMembers() {
+//        return members;
+//    }
+//
+//    public void setMembers(List<Member> members) {
+//        this.members = members;
+//    }
 
     public List<Book> getBooks() {
         return books;
@@ -62,20 +62,20 @@ public class Public_library {
         return this.books.remove(book);
     }
 
-    public void addMembers(Member member) {
-        this.members.add(member);
-    }
+//    public void addMembers(Member member) {
+//        this.members.add(member);
+//    }
+//
+//    public boolean removeMembers(Member member) {
+//        return this.members.remove(member);
+//    }
 
-    public boolean removeMembers(Member member) {
-        return this.members.remove(member);
-    }
 
     @Override
     public String toString() {
-        return "Public_library{" +
+        return "PublicLibrary{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", members=" + members +
                 ", books=" + books +
                 '}';
     }
