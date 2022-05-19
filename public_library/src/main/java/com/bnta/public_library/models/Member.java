@@ -61,4 +61,14 @@ public class Member {
     public boolean removeBooks(Book book) {
         return this.books.remove(book);
     }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", books=" + books +
+                ", library=" + library +
+                '}';
+    }
 }

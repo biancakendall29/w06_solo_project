@@ -69,4 +69,14 @@ public class Public_library {
     public boolean removeMembers(Member member) {
         return this.members.remove(member);
     }
+
+    @Override
+    public String toString() {
+        return "Public_library{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", members=" + members +
+                ", books=" + books +
+                '}';
+    }
 }
